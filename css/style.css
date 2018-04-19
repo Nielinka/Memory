@@ -1,0 +1,48 @@
+
+.btn {
+    display: inline-block;
+    cursor: pointer;
+    padding: 15px 25px;
+    font-size: 24px;
+    margin-left: 20px;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    width: 50%;
+    color: #fff;
+    background-color: #B2B2B2;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #BBFFCC;
+}
+
+.btn:hover {background-color: #FFAFB5}
+
+.btn:active {
+    background-color: #BBFFCC;
+    box-shadow: 0 5px #B2696E;
+    transform: translateY(4px);
+}
+
+.game-board {
+    margin:10px auto;
+    margin-left: 10px;
+    background: #FFF4F3;
+    overflow: hidden;
+    width: 450px;
+    height: 450px;
+    border: 10px solid #B2B2B2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.game-card {
+    position: absolute;
+    margin-left: 32px;
+    margin-top: 25px;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    background: #B2B2B2;
+}
+
+
