@@ -5,14 +5,14 @@ const memoryGame = {
     cards: [],
     cardsChecked: [],
     cardsImg: [
-        'images/title-1.jpg',
         'images/title-2.jpg',
         'images/title-3.jpg',
         'images/title-4.jpg',
         'images/title-5.jpg',
         'images/title-6.jpg',
         'images/title-7.jpg',
-        'images/title-8.jpg'
+        'images/title-8.jpg',
+        'images/title-9.jpg'
     ],
     canGet: true,
     cardPairs: 0,
@@ -29,7 +29,7 @@ const memoryGame = {
                 this.canGet = false;
 
                 if (this.cardsChecked[0].dataset.cardType === this.cardsChecked[1].dataset.cardType) {
-                    setTimeout(this.deleteCards.bind(this), 1000);
+                    setTimeout(this.deleteCards.bind(this), 1500);
                 } else {
                     setTimeout(this.resetCards.bind(this), 500);
                 }
@@ -37,14 +37,19 @@ const memoryGame = {
         }
     },
 
-    deleteCards: function () {
+    deleteCards : function() {
         this.cardsChecked[0].remove();
         this.cardsChecked[1].remove();
 
         this.canGet = true;
         this.cardsChecked = [];
 
+        this.cardPairs++;
+        if (this.cardPairs >= this.cardCount / 2) {
+            alert('YEAAAAH! One more time? ');
+        }
     },
+
 
     resetCards: function () {
         this.cardsChecked[0].style.backgroundImage = 'url(images/title.jpg)';
@@ -65,8 +70,14 @@ const memoryGame = {
         for (var i = 0; i < this.cardCount; i++) {
             this.cards.push(Math.floor(i / 2));
         }
+        for (let i=this.cardCount-1; i>0; i--) {
+            const swap = Math.floor(Math.random()*i);
+            const tmp = this.cards[i];
+            this.cards[i] = this.cards[swap];
+            this.cards[swap] = tmp;
+        }
 
-        for (var i = 0; i < this.cardCount; i++) {
+        for (let i=0; i<this.cardCount; i++) {
             const card = document.createElement('div');
             card.classList.add("game-card");
             this.divBoard.appendChild(card);
@@ -74,8 +85,8 @@ const memoryGame = {
             card.dataset.cardType = this.cards[i];
             card.dataset.index = i;
 
-            card.style.left = (card.offsetWidth+12) * (i%this.cardOnRow) + 'px'
-            card.style.top =  (card.offsetHeight+12) * (Math.floor(i/this.cardOnRow)) + 'px';
+            card.style.left = 5 + (card.offsetWidth+10) * (i%this.cardOnRow) + 'px'
+            card.style.top = 5 + (card.offsetHeight+10) * (Math.floor(i/this.cardOnRow)) + 'px';
 
             card.addEventListener('click', this.cardClick.bind(this));
         }
